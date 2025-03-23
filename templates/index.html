@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B22CS011 VCC Assg3</title>
+</head>
+<body>
+    <h3>CPU intensive application</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td><b>Current load:</b></td>
+                {% if working %}
+                <td>high</td>
+                {% else %}
+                <td>none</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><b>Action:</b></td>
+                <td>
+                    {% if working %}
+                    <a href="/stop">Stop load</a>
+                    {% else %}
+                    <a href="/start">Start load</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
