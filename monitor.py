@@ -10,7 +10,7 @@ INSTANCE_TEMPLATE = "projects/vcc-assg3/regions/us-central1/instanceTemplates/vc
 INSTANCE_GROUP_NAME = "vcc3scaling"
 CPU_THRESHOLD_UP = 45  # Scale-up threshold (%)
 CHECK_INTERVAL = 10  # Check CPU every 10 seconds
-APP_COMMAND = "gunicorn --bind 0.0.0.0:5000 app:app"
+APP_COMMAND = "gunicorn --bind 0.0.0.0:5000 mainApp:app"
 
 def create_instance_group():
     """Creates a GCP Managed Instance Group if it doesn't exist and enables auto-scaling."""
