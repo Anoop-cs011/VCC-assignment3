@@ -37,15 +37,16 @@ def create_instance_group():
 
             # Enable auto-scaling
             enable_autoscaling()
+            return True
 
-            # Run the application on the new instance
-            if start_application():
-                return True
+            # # Run the application on the new instance
+            # if start_application():
+            #     return True
             
-        else:
-            print("[INFO] Instance group already exists. Ensuring application is started")
-            if start_application():
-                return True
+        # else:
+        #     print("[INFO] Instance group already exists. Ensuring application is started")
+        #     if start_application():
+        #         return True
 
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] Failed to create instance group: {e}")
