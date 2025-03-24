@@ -5,4 +5,4 @@ cd VCC-assignment3
 virtualenv myProjectEnv
 source myProjectEnv/bin/activate
 pip install -r requirements.txt
-gunicorn --bind 0.0.0.0:80 mainApp:app
+gunicorn --bind 0.0.0.0:80 mainApp:app --daemon
