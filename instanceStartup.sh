@@ -4,3 +4,4 @@ cd VCC-assignment3
 virtualenv myProjectEnv
 source myProjectEnv/bin/activate
 pip install -r requirements.txt
+python3 mainApp.py
