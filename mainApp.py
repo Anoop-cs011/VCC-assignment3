@@ -1,6 +1,7 @@
 from flask import Flask, render_template, make_response
 import threading
 import multiprocessing
+from socket import gethostbyname, gethostname
 from random import random
 
 app = Flask(__name__)
@@ -68,4 +69,4 @@ def stop_stress():
     return response
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host= gethostbyname(gethostname()), port=5000)
