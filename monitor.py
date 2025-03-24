@@ -8,7 +8,7 @@ ZONE = "us-central1-c"
 REGION = "us-central1"
 INSTANCE_TEMPLATE = "projects/vcc-assg3/regions/us-central1/instanceTemplates/vcc3scalable"  # Pre-configured instance template
 INSTANCE_GROUP_NAME = "vcc3scaling"
-CPU_THRESHOLD_UP = 30  # Scale-up threshold (%)
+CPU_THRESHOLD_UP = 75  # Scale-up threshold (%)
 CHECK_INTERVAL = 10  # Check CPU every 10 seconds
 APP_COMMAND = ["source /home/anoop/VCC-assignment/myProjectEnv/bin/activate","python3 /home/anoop/VCC-assignment/mainApp.py"]
 
