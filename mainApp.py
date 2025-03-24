@@ -81,4 +81,4 @@ def stop_stress():
     return response
 
 if __name__ == "__main__":
-    app.run(host= get_ip(), port=80)
+    app.run(host= get_ip(), port=8080)
