@@ -2,7 +2,6 @@ from flask import Flask, render_template, make_response
 import threading
 import multiprocessing
 from socket import gethostbyname, gethostname
-from random import random
 
 app = Flask(__name__)
 running = False
