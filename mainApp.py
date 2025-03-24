@@ -1,7 +1,7 @@
 from flask import Flask, render_template, make_response
 import threading
 import multiprocessing
-from socket import gethostbyname, gethostname
+import socket
 
 app = Flask(__name__)
 running = False
@@ -22,6 +22,19 @@ def cpu_stress():
         for num, is_prime in enumerate(primes):
             if is_prime:
                 result.append(num)
+
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.settimeout(0)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.254.254.254', 1)) # random unreachable IP
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
 
 @app.route('/')
 def index():
@@ -68,4 +81,4 @@ def stop_stress():
     return response
 
 if __name__ == "__main__":
-    app.run(host= gethostbyname(gethostname()), port=5000)
+    app.run(host= get_ip(), port=5000)
