@@ -39,15 +39,6 @@ def create_instance_group():
             enable_autoscaling()
             return True
 
-            # # Run the application on the new instance
-            # if start_application():
-            #     return True
-            
-        # else:
-        #     print("[INFO] Instance group already exists. Ensuring application is started")
-        #     if start_application():
-        #         return True
-
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] Failed to create instance group: {e}")
         return False
@@ -66,36 +57,6 @@ def enable_autoscaling():
         print("[SUCCESS] Auto-scaling enabled!")
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] Failed to enable auto-scaling: {e}")
-
-def start_application():
-    """Starts the application on the first available instance in the group."""
-    try:
-        print("[INFO] Fetching instance from the instance group...")
-        get_instance_cmd = [
-            "gcloud", "compute", "instance-groups", "managed", "list-instances",
-            INSTANCE_GROUP_NAME, "--zone", ZONE, "--format=get(instance)", "--project", PROJECT_ID
-        ]
-        instance_name = subprocess.check_output(get_instance_cmd, text=True).strip()
-
-        if instance_name:
-            print(f"[INFO] Found instance: {instance_name}. Starting application...")
-            for COMMAND in APP_COMMAND:
-                run_app_cmd = [
-                    "gcloud", "compute", "ssh", instance_name,
-                    "--zone", ZONE,
-                    "--project", PROJECT_ID,
-                    "--command", f"{COMMAND}"
-                ]
-                subprocess.run(run_app_cmd, check=True)
-            print("[SUCCESS] Application started on instance!")
-            return True
-        else:
-            print("[WARNING] No instance found in the group. Skipping app launch.")
-            return False
-
-    except subprocess.CalledProcessError as e:
-        print(f"[ERROR] Failed to start application: {e}")
-        return True
 
 def monitor_ram():
     """Monitors CPU usage and triggers instance group scaling."""
